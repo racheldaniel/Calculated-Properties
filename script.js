@@ -6,7 +6,7 @@ class Restaurant {
     this.address = props.address
     this.hourOpen = props.hourOpen
     this.hourClosed = props.hourClosed
-  
+
   }
 
   // get comboPrice() {
@@ -18,16 +18,17 @@ class Restaurant {
   // }
 
   set combo(items) {
-    this.comboItems = []
-    items.forEach((item) => {
-      this.comboItems.push(item)
-    })
-
+    if (items instanceof Array){
+      this.comboItems = items
+    } else {
+      console.log("Please enter an array of combo items")
+    }
+ 
   }
 
-    get comboPrice() {
+  get comboPrice() {
     let cost = 0
-    this.comboItems.forEach((item) =>  {
+    this.comboItems.forEach((item) => {
       cost += this.menu[item]
     })
     return `${(cost * this.comboDiscount).toFixed(2)}`
@@ -40,7 +41,7 @@ const hotDogStand = {
     soda: 1.50,
     chips: .75,
     water: .10,
-    fries: 2.00 
+    fries: 2.00
   }
 
 }
